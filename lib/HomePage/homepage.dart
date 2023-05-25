@@ -133,7 +133,10 @@ class _HomePageState extends ConsumerState<HomePage> {
                       scrollDirection: Axis.horizontal,
                       child: Row(
                         children: [
-                          widgetmaker("कर्मचारी"),
+                          widgetmaker(
+                            "कर्मचारी",
+                            context,
+                          ),
                           widgetmaker("कर्मचारी"),
                           widgetmaker("कर्मचारी"),
                           widgetmaker("कर्मचारी"),
@@ -171,7 +174,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                         height: 10,
                       ),
                       Container(
-                        height: 500,
+                        height: 300,
                         child: ListView.builder(
                           itemBuilder: (context, index) {
                             return Padding(
@@ -196,8 +199,8 @@ class _HomePageState extends ConsumerState<HomePage> {
                                       Text(
                                         "लिंगभेनेक्स अनुवाद अनुप्रयोगहरूले तपाईंलाई कुनै पनि समयमा मद्दत गर्नेछ! एन्ड्रोइड, आईओएस, म्याकबुक, गुगल, अमेजन एलेक्सा",
                                         style: TextStyle(
-                                            fontSize: 14,
-                                            fontWeight: FontWeight.bold,
+                                            fontSize: 15,
+                                            // fontWeight: FontWeight.bold,
                                             color: Colors.black),
                                       ),
                                     ],
@@ -219,19 +222,30 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 }
 
-widgetmaker(String text) {
-  return Container(
-    width: 200,
-    child: Card(
-      elevation: 3,
-      color: Colors.red.shade800,
-      child: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Center(
-          child: Text(
-            text,
-            style: TextStyle(
-                fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
+widgetmaker(String text, BuildContext context, Widget route) {
+  return InkWell(
+    onTap: () {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => route,
+          ));
+    },
+    child: Container(
+      width: 200,
+      child: Card(
+        elevation: 3,
+        color: Colors.red.shade800,
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Center(
+            child: Text(
+              text,
+              style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white),
+            ),
           ),
         ),
       ),
